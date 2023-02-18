@@ -41,7 +41,7 @@ const logStack = (commands) => {
 }
 
 
-const fileContent = fs.readFileSync("input.txt", "utf8");
+const fileContent = fs.readFileSync("11. Стек с защитой от ошибок/input.txt", "utf8");
 const commands = fileContent.toString().trim().split('\n');
 const result = logStack(commands);
 
