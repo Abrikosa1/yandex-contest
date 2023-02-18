@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 class Stack {
   elements = [];
 
@@ -25,19 +27,20 @@ class Stack {
 
 const logStack = (commands) => {
   let stack = new Stack();
-  const log = commands.reduce((acc, command) => {
+  const log = [];
+  for (const command of commands) {
     const [method, param] = command.split(' ');
     if (method === 'exit') {
-      stack = null;
-      acc.push('bye');
+      log.push(stack[method]());
+      break;
     }
-    if (stack) acc.push(stack[method](param));
-    return acc;
-  }, []);
+    else log.push(stack[method](param))
+  }
+
   return log.join('\n');
 }
 
-const fs = require('fs')
+
 const fileContent = fs.readFileSync("input.txt", "utf8");
 const commands = fileContent.toString().trim().split('\n');
 const result = logStack(commands);
