@@ -15,7 +15,7 @@ const calculatePostfixExpression = (string) => {
   return stack.pop();
 }
 
-const fileContent = fs.readFileSync("13. Постфиксная запись/input.txt", "utf8");
+const fileContent = fs.readFileSync("14. Сортировка вагонов lite", "utf8");
 
 const result = calculatePostfixExpression(fileContent);
 
