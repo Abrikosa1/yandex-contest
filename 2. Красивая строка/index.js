@@ -8,33 +8,34 @@ const calculateStringBeauty = (replacesCount, stringToBeautify) => {
     if (pastChars[char]) {
       continue;
     }
-    console.log(char);
+    pastChars[char] = char;
     let count = replacesCount;
-    let max = 0;
     let leftPointer = 0;
     let rightPointer = 0;
-    while (rightPointer < chars.length - 1) {
-      if (count < 0) {
-        if (chars[leftPointer] === char) {
-          count = 0
+    while (rightPointer <= chars.length) {
+      if (stringToBeautify.length - rightPointer == 0) {
+        res = Math.max(res, rightPointer - leftPointer);
+        break;
+      }
+      if (count >= 0) {
+        if (stringToBeautify[rightPointer] === char) {
+          rightPointer += 1;
         } else {
-          count = 1;
-          max = 0;
+          if (count > 0) {
+            rightPointer += 1;
+            count -= 1
+          } else {
+            res = Math.max(res, rightPointer - leftPointer);
+            leftPointer += 1;
+            if (stringToBeautify[leftPointer - 1] === char) {
+              continue;
+            } else {
+              count = 1;
+            }
+          }
         }
-        leftPointer++;
-      } else {
-        if (chars[rightPointer] !== char) {
-          count--;
-          max++;
-        }
-        if (count >= 0) {
-          max++;
-        }
-        rightPointer++;
       }
     }
-    res = res > max ? res : max;
-    pastChars[char] = res;
   }
   return `${res}`;
 }

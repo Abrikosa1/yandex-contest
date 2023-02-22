@@ -1,13 +1,13 @@
 def calculateStringBeauty(replacesCount, stringToBeautify):
   res = 0
   chars = {}
-
   for char in stringToBeautify:
-    count = replacesCount
-    leftPointer, rightPointer = 0, 0
     if chars.get(char) != None:
       continue
     chars[char] = char
+    count = replacesCount
+    leftPointer, rightPointer = 0, 0
+
     while rightPointer <= len(stringToBeautify):
       if len(stringToBeautify) - rightPointer == 0:
         res = max([res, rightPointer - leftPointer])
