@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-class Stack {
+class Queue {
   elements = [];
 
   push(n) {
@@ -8,7 +8,7 @@ class Stack {
     return 'ok';
   }
   pop() {
-    return this.elements.pop() || 'error';
+    return this.elements.shift() || 'error';
   }
   size() {
     return this.elements.length;
@@ -17,8 +17,8 @@ class Stack {
     this.elements = [];
     return 'ok';
   }
-  back() {
-    return this.elements[this.elements.length - 1] || 'error';
+  front() {
+    return this.elements[0] || 'error';
   }
   exit() {
     return 'bye';
@@ -26,11 +26,11 @@ class Stack {
 }
 
 const logStack = (commands) => {
-  let stack = new Stack();
+  let queue = new Queue();
   const log = [];
   for (const command of commands) {
     const [method, param] = command.split(' ');
-    log.push(stack[method](param))
+    log.push(queue[method](param))
     if (method === 'exit') {
       break;
     }
@@ -40,7 +40,7 @@ const logStack = (commands) => {
 }
 
 
-const fileContent = fs.readFileSync("11. Стек с защитой от ошибок/input.txt", "utf8");
+const fileContent = fs.readFileSync("16. Очередь с защитой от ошибок/input.txt", "utf8");
 const commands = fileContent.toString().trim().split('\n');
 const result = logStack(commands);
 
