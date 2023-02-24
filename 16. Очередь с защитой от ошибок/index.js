@@ -25,7 +25,7 @@ class Queue {
   }
 }
 
-const logStack = (commands) => {
+const logQueue = (commands) => {
   let queue = new Queue();
   const log = [];
   for (const command of commands) {
@@ -42,6 +42,6 @@ const logStack = (commands) => {
 
 const fileContent = fs.readFileSync("16. Очередь с защитой от ошибок/input.txt", "utf8");
 const commands = fileContent.toString().trim().split('\n');
-const result = logStack(commands);
+const result = logQueue(commands);
 
 fs.writeFileSync("output.txt", result);

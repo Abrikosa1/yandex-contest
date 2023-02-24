@@ -35,7 +35,7 @@ class Deque {
   }
 }
 
-const logStack = (commands) => {
+const logDeque = (commands) => {
   let deque = new Deque();
   const log = [];
   for (const command of commands) {
@@ -52,6 +52,6 @@ const logStack = (commands) => {
 
 const fileContent = fs.readFileSync("18. Дек с защитой от ошибок/input.txt", "utf8");
 const commands = fileContent.toString().trim().split('\n');
-const result = logStack(commands);
+const result = logDeque(commands);
 
 fs.writeFileSync("output.txt", result);
